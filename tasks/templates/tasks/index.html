@@ -1,0 +1,13 @@
+{% if recent_tasks %}
+    <h2>Recent Tasks</h2>
+    <ul>
+        {% for task in recent_tasks %}
+            <li>
+                <a href="/tasks/{{ task.id }}/">{{ task.title }}</a>
+                - {{ task.created_at|date:"F j, Y" }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks available.</p>
+{% endif %}

@@ -1,0 +1,10 @@
+{% if task %}
+    <h2>{{ task.title }}</h2>
+    <ul>
+        <li>Description: {{ task.description }}</li>
+        <li>Created at: {{ task.created_at|date:"F j, Y" }}</li>
+        <li>Completed: {{ task.completed }}</li>
+    </ul>
+{% else %}
+    <p>Task not availavle</p>
+{% endif %}
