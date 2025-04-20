@@ -4,6 +4,11 @@
         <li>Description: {{ task.description }}</li>
         <li>Created at: {{ task.created_at|date:"F j, Y" }}</li>
         <li>Completed: {{ task.completed }}</li>
+        <form action="{% url 'tasks:update' task.id %}" method = "POST">
+            {% csrf_token %}
+            <input type="checkbox" name="completed" {% if task.completed %}checked{% endif %}>
+            <input type="submit" value="Update Task">
+        </form>
     </ul>
 {% else %}
     <p>Task not available</p>
