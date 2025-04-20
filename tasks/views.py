@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from .models import Todo
@@ -14,10 +14,7 @@ def index(request):
 
 def detail(request, task_id):
     #return HttpResponse(f"You're looking at task {task_id}.")
-    try:
-        task = Todo.objects.get(id=task_id)
-    except Todo.DoesNotExist:
-        return HttpResponse("Task does not exist.")
+    task = get_object_or_404(Todo, id=task_id)
     context = {
         'task': task,
     }
