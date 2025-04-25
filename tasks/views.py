@@ -33,3 +33,13 @@ def update(request, task_id):
         return HttpResponseRedirect(reverse('tasks:detail', args=(task.id,)))
     else:
         return HttpResponseRedirect(reverse('tasks:detail', args=(task.id,)))
+    
+def new_task(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        task = Todo(title=title, description=description)
+        task.save()
+        return HttpResponseRedirect(reverse('tasks:index'))
+    else:
+        return HttpResponseRedirect(reverse('tasks:index'))
